@@ -3,7 +3,6 @@ import MySQLdb
 import uuid
 import random
 #把爬取得数据存储到mysql数据库中
-
 class tianyanchaDAO(object):
     def __init__(self,host="***********",user="****",password="*******", db="*******"
                          ):
