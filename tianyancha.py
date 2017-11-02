@@ -246,13 +246,13 @@ class tianyanchaService(object):
                 # 将获得cookie的信息打印
                 print cookie2
 
-        self.crawlcommentinfo()
+        self.crawlCompanyinfo()
 
 
 
 
 
-    def crawlcommentinfo(self):
+    def crawlCompanyinfo(self):
         response = HtmlResponse(url="my HTML string", body=self.driver.page_source, encoding="utf-8")
        
         loopNum = 0
@@ -272,7 +272,7 @@ class tianyanchaService(object):
                 #print ifHandle==False
                 print "第"+str(loopNum)+"页"
                 if ifHandle==False:
-                    self.getcommentinfo(self.driver.page_source)
+                    self.getCompanyinfo(self.driver.page_source)
                     ifHandle = True
                 try:
                     #//*[@id="_container_invest"]/div/div[2]/div
@@ -318,8 +318,8 @@ class tianyanchaService(object):
         return False if pageNum>1 else True
 
 
-    # 解析评论页面
-    def getcommentinfo(self, page_sourse):
+    # 解析company information页面
+    def getCompanyinfo(self, page_sourse):
         response = HtmlResponse(url="my HTML string", body=page_sourse, encoding="utf-8")
         #print response
         company = response.xpath('//*[@id="company_web_top"]/div[2]/div[2]/div[1]/span[1]/text()').extract()[0]
@@ -386,10 +386,10 @@ class tianyanchaService(object):
                 self.commList.append({"company":company,"code":code,"category":category,"address":address, "range1":range1, "ID":ID,
                                   "tocompany":tocompany,"name":name,"zhuce_money":zhuce_money,"touzi":touzi,"percent":percent,
                                   "time":time,"state":state,"href":href})
-        xiechenghotelService.saveListCommentInfo()
+        xiechenghotelService.saveListCompanyInfo()
         print len(self.commList)
         self.commList = []
-    def saveListCommentInfo(self):
+    def saveListCompanyInfo(self):
         self.tianyanchaDao.saveCompanyCommentinfo1(self.commList)
 
     def depose(self):
