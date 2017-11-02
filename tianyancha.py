@@ -9,7 +9,7 @@ from datetime import datetime
 import re
 import time
 import uuid
-from DAO.tianyancha import tianyanchaDAO
+from mysql import tianyanchaDAO
 import random
 import csv
 import os
